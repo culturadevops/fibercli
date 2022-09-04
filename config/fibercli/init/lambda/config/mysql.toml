@@ -1,0 +1,11 @@
+[default]
+host = ""
+port = "3306"
+database = ""
+user = ""
+password =""
+charset = "utf8"
+sql_log = true
+
+MaxIdleConns = 10 
+MaxOpenConns = 10

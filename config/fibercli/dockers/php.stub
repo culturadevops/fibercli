@@ -1,0 +1,12 @@
+FROM 561607169148.dkr.ecr.us-east-1.amazonaws.com/base/laravel_mysql_composer:latest
+COPY  deploy/docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY  deploy/docker/.env-pro /var/www/html/.env
+COPY  deploy/docker/php.ini /usr/local/etc/php/php.ini
+# Suppress the do-not-run-as-root warning from composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+COPY  . /var/www/html/
+WORKDIR /var/www/html/
+
+RUN chown -R www-data:www-data /var/www/html  \
+    && composer install  && composer dumpautoload 

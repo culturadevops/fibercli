@@ -1,0 +1,8 @@
+package  %PACKAGENAME%
+
+import (
+	"github.com/jinzhu/gorm"
+)
+type %MODELNAME% struct {
+	gorm.Model
+}

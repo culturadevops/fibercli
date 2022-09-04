@@ -1,0 +1,34 @@
+package %PACKAGENAME%
+//default
+import (
+	"%PROJECT_NAME%/%MODEL_PACKAGE_NAME%"
+	"github.com/gofiber/fiber/v2"
+	"net/http"
+	"fmt"
+)
+
+type %MODELNAME% struct {
+
+}
+type %EXPORTNAME%rqt struct {
+//	Account  string `json:"account" form:"account" query:"account"`
+}
+func %EXPORTNAME%GetRequest(c *fiber.Ctx) *%EXPORTNAME%rqt {
+	u := new(%EXPORTNAME%rqt)
+	if err := c.BodyParser(u); err != nil {
+		return nil
+	}
+	return u
+}
+func (t %MODELNAME%) Add() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		u := %EXPORTNAME%GetRequest(c)
+		fmt.Println(u)
+		%EXPORTNAME%mdl:=%MODEL_PACKAGE_NAME%.%EXPORTNAME%{}
+		data= %EXPORTNAME%mdl.List()
+		if u == nil {
+			return c.Status(http.StatusOK).JSON(data)
+		}
+			return c.Status(http.StatusInternalServerError).JSON(err)
+	}
+}

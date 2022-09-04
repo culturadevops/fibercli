@@ -1,0 +1,9 @@
+func  %MODELNAME%() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		if u == nil {
+			return c.Status(http.StatusOK).JSON(data)
+		}
+			return c.Status(http.StatusInternalServerError).JSON(err)
+	}
+}
+

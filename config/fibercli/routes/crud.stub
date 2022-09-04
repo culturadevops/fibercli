@@ -1,0 +1,16 @@
+package %PACKAGENAME%
+
+import (
+	"%PROJECT_NAME%/%HANDLER_PACKAGE_NAME%"
+	"github.com/gofiber/fiber/v2"
+)
+
+func %EXPORTNAME%(e *fiber.App, Handler *%HANDLER_PACKAGE_NAME%.%EXPORTNAME%) {
+	r := e.Group("/%MODELNAME%")
+	r.Get("/show/:id", Handler.Show())
+	r.Get("/list", Handler.List())
+	r.Post("/list", Handler.Add())
+	r.Put("/update/:id", Handler.Update())
+	r.Delete("/del/:id", Handler.Del())
+
+}

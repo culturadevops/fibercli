@@ -1,0 +1,71 @@
+package model
+
+import (
+	"cms/libs"
+	"errors"
+	"github.com/jinzhu/gorm"
+	
+	"math"
+	"strings"
+)
+
+type %MODELNAME% struct {
+	gorm.Model
+		Title        string `gorm:"type:varchar(250); NOT NULL; DEFAULT '';"validate:"required"`
+}
+
+func (this *%MODELNAME%) List(page int) ([]%MODELNAME%, int, int) {
+	var data = []%MODELNAME%{}
+	var totalCount int
+	db := libs.DB
+
+	limit := 10
+	offset := (page - 1) * limit
+	db.Find(&data).Count(&totalCount)
+	db.Offset(offset).Limit(limit).Order("id desc").Find(&data)
+	totalPages := int(math.Ceil(float64(totalCount) / float64(limit)))
+	return data, totalCount, totalPages
+}
+
+func (this *%MODELNAME%) Info(id uint) (%MODELNAME%, error) {
+	var %MODELNAME% %MODELNAME%
+
+
+	if libs.DB.Where("id = ?", id).First(&%MODELNAME%).RecordNotFound() {
+		return %MODELNAME%{}, errors.New("ERROR")
+	}
+	return %MODELNAME%, nil
+}
+
+func (this *%MODELNAME%) Add(postValues map[string][]string) error {
+	var %MODELNAME% %MODELNAME%
+
+	if !libs.DB.Where("title = ? ", %MODELNAME%.Title).First(&%MODELNAME%{}).RecordNotFound() {
+		return errors.New("ERROR")
+	}
+
+	if err := db.Create(&%MODELNAME%).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *%MODELNAME%) Update(postValues map[string][]string) error {
+	var %MODELNAME% %MODELNAME%
+	db := libs.DB
+
+	if err := libs.DB.Save(&%MODELNAME%).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *%MODELNAME%) Del(id uint) error {
+	var %MODELNAME% %MODELNAME%
+	db := libs.DB
+
+	if err := db.Where("id = ?", id).Delete(&%MODELNAME%).Error; err != nil {
+		return err
+	}
+	return nil
+}

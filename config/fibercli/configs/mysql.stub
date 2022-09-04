@@ -1,0 +1,13 @@
+[default]
+host = "172.17.0.2"
+port = "3306"
+database = "cindi"
+user = "root"
+password ="secret"
+charset = "utf8"
+sql_log = true
+
+
+
+MaxIdleConns = 10 
+MaxOpenConns = 100 

@@ -1,0 +1,10 @@
+[default]
+Pro_name="%FIBERCLI%"
+Type="cleancode"
+Flag_crud="true"
+Handler="handlers"
+Model="models"
+Middleware="mid"
+Config="configs"
+Router="routes"
+Libs="extra"

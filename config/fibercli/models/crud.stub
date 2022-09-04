@@ -1,0 +1,31 @@
+package %PACKAGENAME%
+
+import (
+	"errors"
+	"github.com/jinzhu/gorm"
+)
+
+type %EXPORTNAME% struct {
+	gorm.Model
+}
+
+func (this *%EXPORTNAME%) List() []%EXPORTNAME% {
+	var data = []%EXPORTNAME%{}
+	return data
+}
+func (this *%EXPORTNAME%) Info(id uint) (%EXPORTNAME%, error) {
+	var data %EXPORTNAME%
+	return data , nil
+}
+func (this *%EXPORTNAME%) Add()  (%EXPORTNAME%, error) {
+	var data %EXPORTNAME%
+	return data, nil
+}
+func (this *%EXPORTNAME%) Update( id uint) (%EXPORTNAME%,error) {
+	var data %EXPORTNAME%
+	return data, nil
+}
+func (this *%EXPORTNAME%) Del(id uint) error {
+	var data %EXPORTNAME%
+	return nil
+}
